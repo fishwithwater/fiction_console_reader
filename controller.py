@@ -1,3 +1,7 @@
+import os
+
+def clear():
+    os.system('cls')
 
 class Controller:
     def __init__(self, config, fiction):
@@ -8,6 +12,14 @@ class Controller:
         self.offset = 0
         self.limit = config.line_limit
 
+    def print_content(func):
+        def wrapper(self, *args, **kwargs):
+            clear()
+            func(self, *args, **kwargs)
+            self.print_controller()
+        return wrapper
+
+    @print_content
     def next_page(self):
         if self.need_next_page():
             if self.current_chapter is not None:
@@ -24,6 +36,7 @@ class Controller:
             self.offset += self.limit
         Controller.format_print(self.current_chapter[self.offset:self.offset + self.limit])
 
+    @print_content
     def last_page(self):
         if self.need_last_page():
             self.config.last_page()
@@ -52,9 +65,7 @@ class Controller:
         return False
 
     def need_last_page(self):
-        size = len(self.current_chapter)
         offset = self.offset
-        limit = self.limit
         if offset <= 0:
             return True
         return False
