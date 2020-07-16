@@ -8,9 +8,7 @@ class Fiction:
         res = requests.get(config.url_prefix + config.fiction_url)
         self.fiction_html = Fiction.parse_html(res)
         self.fiction_title = self.get_fiction_title()
-        print("小说名：{}".format(self.fiction_title))
         self.chapter_list = self.get_fiction_chapter_list()
-        print("章节数：{}".format(len(self.chapter_list)))
 
     def get_fiction_chapter_list(self):
         chapter_a_list = self.fiction_html.xpath('//div[@id="list"]//a')

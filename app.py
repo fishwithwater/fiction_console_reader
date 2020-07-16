@@ -1,12 +1,12 @@
 from config import Config
 from fiction import Fiction
-from controller import Controller
+from controller import Controller,Mode
 from pynput import keyboard
 
 config = Config()
 fiction = Fiction(config)
 controller = Controller(config, fiction)
-controller.next_page()
+controller.print_home()
 
 
 def on_press(key):
@@ -15,10 +15,15 @@ def on_press(key):
     if key == keyboard.Key.up:
         controller.last_page()
     elif key == keyboard.Key.down:
-        controller.next_page()
+        if controller.mode == Mode.Home or controller.mode == Mode.Fiction:
+            controller.next_page()
+    elif key == keyboard.Key.left:
+        if controller.mode == Mode.Fiction:
+            controller.print_home()
     elif key == keyboard.Key.esc:
         print('Bye bye ~')
         return False
+
 
 with keyboard.Listener(
         on_press=on_press) as listener:
