@@ -17,3 +17,8 @@
 `fiction_index`为开始章节下标,`line_limit`为每页行数,`fiction_url`为小说目录页路径
 4. 运行
 `python app.py`
+## 计划
+- [x] 小说分页
+- [x] 阅读器首页
+- [ ] 目录查询、跳转
+- [ ] 动态修改配置
