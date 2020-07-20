@@ -44,3 +44,6 @@ class Config:
 
     def to_string(self):
         return '小说源:{url_prefix}\n主页:{fiction_url}\n每页行数:{line_limit}\n'.format(**self.to_json())
+
+
+config = Config()
