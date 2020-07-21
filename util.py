@@ -21,3 +21,13 @@ def filter_ads(content_list):
 
 def format_print(content_list):
     return "\n".join(content_list)
+
+
+def format_catalog(current_page_chapter_list, limit):
+    res_str = ''
+    maxlen = max(len(x['title']) for x in current_page_chapter_list)
+    for i in range(limit):
+        if i % 3 == 0 and i != 0:
+            res_str += '\n'
+        res_str += ('{0:{1}<' + str(maxlen) + '}\t').format(current_page_chapter_list[i]['title'], chr(12288))
+    return res_str

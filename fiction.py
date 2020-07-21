@@ -4,7 +4,7 @@ from chapter import Chapter
 from config import config
 
 
-class Fiction():
+class Fiction:
     def __init__(self):
         res = requests.get(config.url_prefix + config.fiction_url)
         self.fiction_html = parse_html(res)
