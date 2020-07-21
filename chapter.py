@@ -23,7 +23,7 @@ class Chapter:
     '''是否需要加载下一章'''
 
     def need_next_chapter(self):
-        return self.offset >= len(self.content_list)
+        return self.offset >= len(self.content_list) - config.line_limit
 
     '''是否需要加载上一章'''
 
@@ -53,7 +53,7 @@ class Chapter:
         if start < 0:
             start = 0
         content = self.content_list[start:offset]
-        self.offset -= limit
+        self.offset = start
         return content
 
     def get_chapter_percent(self):
