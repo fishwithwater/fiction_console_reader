@@ -1,6 +1,9 @@
 # Fiction Console Reader
 ## 简介
 笔趣阁小说命令行阅读器
+##目前支持小说站
+- http://www.xbiquge.la 编码utf-8
+- https://www.guibuyu.org 编码gbk
 ## 快速使用
 1. 下载代码
 2. 安装依赖
@@ -11,7 +14,8 @@
     "fiction_url": "/48/48246", 
     "fiction_index": 0, 
     "url_prefix": "http://www.xbiquge.la", 
-    "line_limit": 10
+    "line_limit": 10,
+    "encoding": "utf-8"
 }
 ``` 
 `fiction_index`为开始章节下标,`line_limit`为每页行数,`fiction_url`为小说目录页路径

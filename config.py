@@ -16,6 +16,8 @@ class Config:
             self.url_prefix = config_dict['url_prefix']
             '''每页行数'''
             self.line_limit = config_dict['line_limit']
+            '''编码'''
+            self.encoding = config_dict['encoding']
 
         if self.fiction_url is None:
             print("请配置小说目录页")
@@ -39,11 +41,12 @@ class Config:
             'fiction_url': self.fiction_url,
             'fiction_index': self.fiction_index,
             'url_prefix': self.url_prefix,
-            'line_limit': self.line_limit
+            'line_limit': self.line_limit,
+            'encoding':self.encoding
         }
 
     def to_string(self):
-        return '小说源:{url_prefix}\n主页:{fiction_url}\n每页行数:{line_limit}\n'.format(**self.to_json())
+        return '小说源:{url_prefix}\n主页:{fiction_url}\n每页行数:{line_limit}\n编码:{encoding}\n'.format(**self.to_json())
 
 
 config = Config()
