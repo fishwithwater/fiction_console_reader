@@ -1,33 +1,23 @@
-from controller import Controller, Mode
+from pages.home_page import HomePage
+from router import router
 from pynput import keyboard
-
-controller = Controller()
-controller.print_home()
-
-
-def on_press(key):
-    if isinstance(key, keyboard.KeyCode):
-        key = key.char
-    if key == 'w' or key == keyboard.Key.up:
-        if controller.mode == Mode.Home or controller.mode == Mode.Fiction:
-            controller.last_page()
-        if controller.mode == Mode.Catalog:
-            controller.show_chapter_last()
-    elif key == 's' or key == keyboard.Key.down:
-        if controller.mode == Mode.Home or controller.mode == Mode.Fiction:
-            controller.next_page()
-        if controller.mode == Mode.Catalog:
-            controller.show_chapter_next()
-    elif key == keyboard.Key.left:
-        if controller.mode == Mode.Fiction:
-            controller.print_home()
-    elif key == keyboard.Key.right:
-        controller.show_chapter_next()
-    elif key == keyboard.Key.esc:
-        print('Bye bye ~')
-        return False
+from keyboard_registry import registry
+from util import clear
 
 
-with keyboard.Listener(
-        on_press=on_press) as listener:
+def handle_exit():
+    clear()
+    exit(0)
+
+
+def register_app_listener():
+    registry.register(keyboard.Key.esc, handle_exit)
+
+
+if __name__ == '__main__':
+    register_app_listener()
+    home_page = HomePage()
+    router.push(home_page)
+
+with keyboard.Listener(on_press=registry.dispatch) as listener:
     listener.join()
