@@ -27,5 +27,13 @@ class XbiqugeAdapter(Adapter):
     def get_fiction_chapter_list(self):
         return self.chapter_list
 
-    def get_fiction_chapter_content(self):
-        pass
+    def get_fiction_chapter_content(self, index):
+        if index > len(self.chapter_list) or index < 0:
+            return None
+        url = self.chapter_list[index]['href']
+        res = requests.get(app_config.source_website + url)
+        res.encoding = app_config.encode
+        chapter_content_html = etree.HTML(res.text)
+        content = chapter_content_html.xpath('//div[@id="content"]//text()')
+        content_format = ["".join(x.split()) for x in content]
+        return content_format

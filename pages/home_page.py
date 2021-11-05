@@ -10,13 +10,13 @@ from controller import get_controller
 
 class HomePage(Page):
     def __init__(self):
-        registry.register(keyboard.Key.right, self.handle_read)
+        registry.register(keyboard.Key.down, self.handle_read)
 
     def handle_read(self):
         router.push(ContentPage())
 
     def on_destroy(self):
-        registry.cancel_register(keyboard.Key.right, self.handle_read)
+        registry.cancel_register(keyboard.Key.down, self.handle_read)
 
     @print_content
     def print(self):

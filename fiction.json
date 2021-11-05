@@ -4,5 +4,6 @@
   "encode": "utf-8",
   "line_size": 10,
   "current_chapter_index": 0,
-  "current_chapter_line_index": 0
+  "current_chapter_line_index": 0,
+  "ads": []
 }
